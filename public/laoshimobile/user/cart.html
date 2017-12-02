@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>购物车</title>
+    <link rel="stylesheet" href="../assets/mui/css/mui.min.css">
+    <link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/mobile.css">
+</head>
+<body>
+<div class="lt_container">
+    <header class="lt_header">
+        <a href="javascript:history.back();" class="left"><span class="mui-icon mui-icon-back"></span></a>
+        <h3>购物车</h3>
+        <a href="javascript:;" class="right"><span class="fa fa-refresh"></span></a>
+    </header>
+    <div class="lt_body cart">
+        <div class="lt_content">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <!--购物车商品列表-->
+                    <ul class="mui-table-view" id="cartList">
+                        <!--TODO-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lt_amount">
+        <div class="amount">订单总额：&yen;<span>0.00</span></div>
+        <a href="javascript:;" class="trade">生成订单</a>
+    </div>
+    <div class="lt_footer">
+        <a href="../index.html"><span class="fa fa-home"></span><p>首页</p></a>
+        <a href="../category.html"><span class="fa fa-bars"></span><p>分类</p></a>
+        <a href="cart.html"><span class="fa fa-shopping-cart"></span><p>购物车</p></a>
+        <a href="index.html"><span class="fa fa-user"></span><p>个人中心</p></a>
+    </div>
+</div>
+<script type="text/template" id="cartListTemplate">
+    <% for(var i = 0 ; i < list.length ; i ++ ){ %>
+    <% var item = list[i]; %>
+    <li class="mui-table-view-cell mui-media">
+        <div class="mui-slider-right mui-disabled">
+            <a data-id="<%=item.id%>" class="mui-btn mui-btn-blue mui-icon mui-icon-compose"></a>
+            <a data-id="<%=item.id%>" data-index="<%=i%>" class="mui-btn mui-btn-red mui-icon mui-icon-trash"></a>
+        </div>
+        <div class="mui-slider-handle">
+            <a href="javascript:;" class="mui-navigate-right">
+                <%
+                    var picAddr = '../images/none01.jpg';
+                    if(item.pic && item.pic.length && item.pic[0].picAddr){
+                        picAddr = item.pic[0].picAddr;
+                    }
+                %>
+                <img class="mui-media-object mui-pull-left" width="60" src="<%=picAddr%>">
+                <div class="mui-media-body">
+                    <p class="name mui-ellipsis-2"><%=item.proName%></p>
+                    <p class="price"><span class="now">&yen;<%=item.price%></span> <span class="old">&yen;<%=item.oldPrice%></span><span class="num">x<%=item.num%>双</span></p>
+                    <p>鞋码：<%=item.size%> </p>
+                </div>
+                <input data-id="<%=item.id%>" type="checkbox" <%=item.isChecked==1?'checked':'' %> >
+            </a>
+        </div>
+    </li>
+    <% } %>
+</script>
+<script type="text/template" id="cartEditTemplate">
+    <div class="cart_update">
+        <div class="pro_size">
+            尺码：
+            <%  var productSizeArr = productSize.split('-');
+                var start = productSizeArr[0],end = productSizeArr[1];
+                for( var i = start ; i <= end ; i++){ %>
+                <span class="btn_size <%=i==size?'now':''%>"><%=i%></span>
+            <% } %>
+        </div>
+        <div class="pro_num">
+            数量：
+            <div class="change">
+                <span data-type="0">-</span><input type="number" value="<%=num%>" max="<%=productNum%>" readonly><span data-type="1">+</span>
+            </div>
+        </div>
+    </div>
+</script>
+<script src="../assets/mui/js/mui.min.js"></script>
+<script src="../assets/zepto/zepto.min.js"></script>
+<script src="../assets/art-template/template-native.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/user/cart.js"></script>
+</body>
+</html>

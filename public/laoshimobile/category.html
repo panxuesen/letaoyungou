@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>商品分类</title>
+    <link rel="stylesheet" href="assets/mui/css/mui.min.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/mobile.css">
+</head>
+<body>
+<div class="lt_container">
+    <header class="lt_header">
+        <a href="javascript:history.back();" class="left"><span class="mui-icon mui-icon-back"></span></a>
+        <h3>商品分类</h3>
+        <a href="search.html" class="right"><span class="fa fa-search"></span></a>
+    </header>
+    <div class="lt_body">
+        <div class="lt_content">
+            <div class="lt_cateLeft">
+                <ul>
+                    <!--TODO-->
+                </ul>
+            </div>
+            <div class="lt_cateRight">
+                <ul>
+                    <!--TODO-->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="lt_footer">
+        <a href="index.html"><span class="fa fa-home"></span><p>首页</p></a>
+        <a href="category.html"><span class="fa fa-bars"></span><p>分类</p></a>
+        <a href="user/cart.html"><span class="fa fa-shopping-cart"></span><p>购物车</p></a>
+        <a href="user/index.html"><span class="fa fa-user"></span><p>个人中心</p></a>
+    </div>
+</div>
+<!--一级分类模板-->
+<script type="text/template" id="firstTemplate">
+    <% for(var i = 0 ; i < rows.length ; i ++){ %>
+    <li class="<%=i==0?'now':''%>"><a data-id="<%=rows[i].id%>" href="javascript:;"><%=rows[i].categoryName%></a></li>
+    <% } %>
+</script>
+<!--二级分类模板-->
+<script type="text/template" id="secondTemplate">
+    <% if(rows.length){ %>
+        <% for(var i = 0 ; i < rows.length ; i ++){ %>
+        <li><a href="#"><img onerror="this.src='images/none01.jpg'" src="<%=rows[i].brandLogo%>" alt=""><p><%=rows[i].brandName%></p></a></li>
+        <% } %>
+    <% }else{ %>
+        <li class="nd">该分类下暂无数据。</li>
+    <% } %>
+</script>
+<script src="assets/mui/js/mui.min.js"></script>
+<!--tap 触发两次的原因 -->
+<!--1.引用的是最新的zepto-->
+<!--2.mui其实也实现了tap addEventListener 多次绑定 同时引用最新zepto会多次触发tap-->
+<!--3.解决方案  使用 1.2.0 版本的 zepto  ,不要mui,让zepto的tap失效-->
+<script src="assets/zepto/zepto.min.js"></script>
+<script src="assets/art-template/template-native.js"></script>
+<script src="js/category.js"></script>
+</body>
+</html>

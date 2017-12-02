@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>搜索中心</title>
+    <link rel="stylesheet" href="assets/mui/css/mui.min.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/mobile.css">
+</head>
+<body>
+<div class="lt_container">
+    <header class="lt_header">
+        <a href="javascript:history.back();" class="left"><span class="mui-icon mui-icon-back"></span></a>
+        <h3>搜索中心</h3>
+    </header>
+    <div class="lt_body">
+        <div class="lt_content">
+            <!--搜索框-->
+            <div class="lt_search">
+                <input type="search" placeholder="搜索你喜欢的商品">
+                <a href="javascript:;">搜索</a>
+            </div>
+            <!--搜索历史-->
+            <div class="lt_history">
+                <!--TODO-->
+            </div>
+        </div>
+    </div>
+    <div class="lt_footer">
+        <a href="index.html"><span class="fa fa-home"></span><p>首页</p></a>
+        <a href="category.html"><span class="fa fa-bars"></span><p>分类</p></a>
+        <a href="user/cart.html"><span class="fa fa-shopping-cart"></span><p>购物车</p></a>
+        <a href="user/index.html"><span class="fa fa-user"></span><p>个人中心</p></a>
+    </div>
+</div>
+<script type="text/template" id="ltHistoryTemplate">
+    <% if(list.length){ %>
+    <div class="tit">
+        <h3>搜索历史</h3>
+        <a href="javascript:;"><span class="fa fa-trash"></span> 清空记录</a>
+    </div>
+    <ul>
+        <% for(var i= list.length -1 ; i >= 0; i -- ){ %>
+        <li><a data-key="<%=list[i]%>" href="javascript:;"><%=list[i]%></a><span data-index="<%=i%>" class="fa fa-close"></span></li>
+        <% } %>
+    </ul>
+    <% }else{ %>
+    <div class="tit">
+        <h3>没有搜索历史记录。</h3>
+    </div>
+    <% } %>
+</script>
+<script src="assets/mui/js/mui.min.js"></script>
+<script src="assets/zepto/zepto.min.js"></script>
+<script src="assets/art-template/template-native.js"></script>
+<script src="js/search.js"></script>
+</body>
+</html>

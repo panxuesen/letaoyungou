@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>商品详情</title>
+    <link rel="stylesheet" href="assets/mui/css/mui.min.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/mobile.css">
+</head>
+<body>
+<div class="lt_container">
+    <header class="lt_header">
+        <a href="javascript:history.back();" class="left"><span class="mui-icon mui-icon-back"></span></a>
+        <h3>商品详情</h3>
+        <a href="index.html" class="right"><span class="fa fa-home"></span></a>
+    </header>
+    <div class="lt_body">
+        <div class="lt_content">
+            <div class="mui-scroll-wrapper" id="refreshContainer">
+                <div class="mui-scroll">
+                   <!--TODO-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lt_trade">
+        <a href="user/cart.html" class="cart"><span class="fa fa-shopping-cart"></span></a>
+        <div class="btn">
+            <a href="javascript:;" class="addCart">加入购物车</a>
+            <a href="javascript:;" class="buy">立即支付</a>
+        </div>
+    </div>
+</div>
+<script type="text/template" id="productDetailTemplate">
+    <%
+        var picList = [{picAddr:'images/none01.png'}];
+        if(pic && pic.length){
+            picList = pic;
+        }
+    %>
+    <div class="mui-slider">
+        <div class="mui-slider-group mui-slider-loop">
+            <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="<%=picList[picList.length-1].picAddr%>" /></a></div>
+            <% for(var i = 0 ; i < picList.length ; i ++){ %>
+            <div class="mui-slider-item"><a href="#"><img src="<%=picList[i].picAddr%>" /></a></div>
+            <% } %>
+            <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="<%=picList[0].picAddr%>" /></a></div>
+        </div>
+        <div class="mui-slider-indicator">
+            <% for(var i = 0 ; i < picList.length ; i ++){ %>
+            <div class="mui-indicator <%=i==0?'mui-active':''%>"></div>
+            <% } %>
+        </div>
+    </div>
+    <div class="pro_name"><p><%=proName%></p></div>
+    <div class="pro_price">价格：<span class="nowPrice">&yen;<%=price%></span> <span class="oldPrice">&yen;<%=oldPrice%></span></div>
+    <div class="pro_size">尺码：
+         <% var sizeArr = size.split('-');
+            var start = sizeArr[0],end = sizeArr[1];
+            for( var i = start; i <= end; i++ ){ %>
+            <span class="btn_size"><%=i%></span>
+         <% } %>
+    </div>
+    <div class="pro_num">数量：
+        <div class="change"><span data-type="0">-</span><input type="number" value="0" max="<%=num%>" readonly><span data-type="1">+</span></div>
+        <div class="overPlus">剩余：<%=num%> 件</div>
+    </div>
+</script>
+<script src="assets/mui/js/mui.min.js"></script>
+<script src="assets/zepto/zepto.min.js"></script>
+<script src="assets/art-template/template-native.js"></script>
+<script src="js/common.js"></script>
+<script src="js/product.js"></script>
+</body>
+</html>
