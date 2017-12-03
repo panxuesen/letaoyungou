@@ -8,6 +8,9 @@ $(function(){
         deceleration:0.0006, //阻尼系数,系数越小滑动越灵敏
         bounce: true//是否启用回弹
     });
+    mui('.mui-slider').slider({
+        interval:4000
+    });
     mui.init({
         pullRefresh : {
             container:".mui-scroll-wrapper",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
@@ -46,6 +49,34 @@ $(function(){
             count++;
         }
         $('.p_number input').val(count);
+    });
+    $('.btn_addCart').on('tap',function(){
+        var productId = lt.getUrlData().productId;
+        if($('.p_size.now')){
+            var size = $('.p_size.now').val();            
+        }else{
+            mui.toast('请选择尺码');
+            return false;
+        }
+        var num = $('.p_number input').val();
+        if(num<=0){
+            mui.toast('请选择至少一件商品');
+            return false;            
+        }
+        lt.ajax({
+            type:'post',
+            url:'/cart/addCart',
+            data:{
+                productId:productId,
+                size:size,
+                num:num
+            },
+            success:function(data){
+                if(data.success){
+                    mui.toast('添加成功');
+                }
+            }
+        })
     })
     
 })
