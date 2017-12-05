@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>乐淘后台管理系统-一级分类管理</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/bootstrap-validator/css/bootstrapValidator.min.css">
+    <link rel="stylesheet" href="assets/nprogress/nprogress.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+<!--侧边栏-->
+<aside class="ad_aside">
+    <div class="brand"><a href="index.html">ITCAST</a></div>
+    <div class="user">
+        <img src="images/default.png" alt="">
+        <span>超级管理员</span>
+    </div>
+    <div class="menu">
+        <ul>
+            <li><a href="userManage.html"><span class="glyphicon glyphicon-user"></span> 用户管理</a></li>
+            <li>
+                <a href="javascript:;"><span class="glyphicon glyphicon-list"></span> 分类管理</a>
+                <div class="child">
+                    <a href="categoryFirst.html" class="now">一级分类</a>
+                    <a href="categorySecond.html">二级分类</a>
+                </div>
+            </li>
+            <li><a href="productManage.html"><span class="glyphicon glyphicon-tags"></span> 商品管理</a></li>
+        </ul>
+    </div>
+</aside>
+<!--内容-->
+<section class="ad_section">
+    <nav class="ad_nav">
+        <a data-menu="" href="javascript:;"><span class="glyphicon glyphicon-align-justify"></span></a>
+        <a data-logout=""  href="javascript:;"><span class="glyphicon glyphicon-log-out"></span></a>
+    </nav>
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li><a href="index.html">管理系统</a></li>
+            <li>分类管理</li>
+            <li class="active">一级分类管理</li>
+        </ol>
+        <!--右侧内容-->
+        <div class="ad_content">
+            <a id="saveBtn" href="javascript:;" class="btn btn-default mb_15">添加分类</a>
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th width="30%">序号</th>
+                        <th>分类</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--TODO-->
+                </tbody>
+            </table>
+            <nav class="text-right">
+                <ul class="pagination">
+                   <!--TODO-->
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+<script type="text/template" id="listTemplate">
+    <% for(var i = 0 ; i < rows.length ; i ++){ %>
+    <tr>
+        <td><%=(page-1)*size+i+1%></td>
+        <td><%=rows[i].categoryName%></td>
+    </tr>
+    <% } %>
+</script>
+<div class="modal fade" id="saveModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title">添加分类</h4>
+            </div>
+            <div class="modal-body">
+                <form id="saveForm" autocomplete="off">
+                    <div class="form-group">
+                        <input name="categoryName" type="text" class="form-control" placeholder="请输入分类名称">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <!-- 处理没有在form元素内 关联当前表单  给当前的表单元素 加一个属性 form=“form元素ID” -->
+                <button type="submit" class="btn btn-primary" form="saveForm">添加</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="assets/jquery/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+<script src="assets/bootstrap-paginator/bootstrap-paginator.min.js"></script>
+<script src="assets/nprogress/nprogress.js"></script>
+<script src="assets/artTemplate/template-native.js"></script>
+<script src="js/common.js"></script>
+<script src="js/categoryFirst.js"></script>
+</body>
+</html>

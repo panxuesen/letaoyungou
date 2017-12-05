@@ -433,3 +433,44 @@
     font-size: 14px;
     float: right;
 }
+/* =====================购物车======================== */
+
+
+/* ====================个人中心=================== */
+.lt_btn{
+    padding: 10px;
+}
+.lt_btn .mui-btn{
+    width: 100%;
+}
+/*======================注册页面===================*/
+.lt_info{
+    padding: 10px;
+    font-size: 12px;
+}
+.lt_info a{
+    float: right;
+    font-size: 12px;
+}
+.lt_info span{
+    vertical-align: middle;
+}
+.lt_info input{
+    vertical-align: middle;
+}
+.mui-input-row .mui-btn.btn-getCode{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    width: 120px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0;
+}
+.mui-input-row .mui-btn.btn-getCode.disable{
+    background: #ccc;
+    border-color: #ccc;
+}
+.mui-input-row.code .mui-icon-clear{
+    right: 140px;
+}

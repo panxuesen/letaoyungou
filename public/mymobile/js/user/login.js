@@ -2,7 +2,6 @@ $(function(){
     $('body').on('tap','.login_btn',function(){
         var formList = $('#login').serialize();
         var params=lt.getFormData(formList);
-        console.log(params)
         if(!$.trim(params.username)){
             mui.toast('请输入用户名');
             return false;
@@ -12,13 +11,6 @@ $(function(){
             return false;            
         }
         getLoginMessage(formList);
-    })
-    lt.ajax({
-        url:'/cart/deleteCart',
-        data:{id:9},
-        success:function(data){
-            console.log(data)
-        }
     })
 })
 var getLoginMessage = function(formList){
@@ -34,7 +26,8 @@ var getLoginMessage = function(formList){
             }
             if(data.success){
                 if(location.search){
-                    location.href = location.search.replace('?returnURL=','');
+                    location.href = decodeURIComponent(location.search.replace('?returnUrl=',''));
+                    return false;
                 }
                 location.href = lt.USER;
             }

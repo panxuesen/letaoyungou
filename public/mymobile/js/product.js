@@ -1,28 +1,17 @@
 $(function(){
-    mui('.mui-scroll-wrapper').scroll({
-        scrollY: true, //是否竖向滚动
-        scrollX: false, //是否横向滚动
-        startX: 0, //初始化时滚动至x
-        startY: 0, //初始化时滚动至y
-        indicators: false, //是否显示滚动条
-        deceleration:0.0006, //阻尼系数,系数越小滑动越灵敏
-        bounce: true//是否启用回弹
-    });
-    mui('.mui-slider').slider({
-        interval:4000
-    });
+
     mui.init({
         pullRefresh : {
             container:".mui-scroll-wrapper",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+            indicators:false,//不显示滚动条
             down : {
                 height:50,//可选,默认50.触发下拉刷新拖动距离,
                 auto: true,//可选,默认false.首次加载自动下拉刷新一次
                 callback :function() { //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
-                    var that = this
-
+                    var that = this;
                     getProductDetail(function(data){
-                        console.log(data)
                         $('.mui-scroll').html(template('productDetail',{data:data}));
+                        mui('.mui-slider').slider();//在页面渲染完毕后初始化轮播图
                         that.endPulldownToRefresh();
                         that.refresh(true);
                     });  
@@ -73,7 +62,15 @@ $(function(){
             },
             success:function(data){
                 if(data.success){
-                    mui.toast('添加成功');
+                    mui.confirm('亲添加成功,去购物车看看吗？','温馨提示',['否','是'],function (e) {
+                        if(e.index == 1){
+                            /*跳转购物车页面*/
+                            location.href = lt.CART;
+                        }else{
+                            /*默认就是关闭对话框*/
+                        }
+                        loading = false;
+                    });
                 }
             }
         })
@@ -88,9 +85,9 @@ var getProductDetail = function(callback){
         data:{id:window.productId},
         dataType:'json',
         success:function(data){
-            setTimeout(function(){
+            // setTimeout(function(){
                 callback&&callback(data);
-            },1000)
+            // },1000)
         }
     })
 }

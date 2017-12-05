@@ -40,7 +40,7 @@ lt.ajax = function(params){
         dataType:'json',
         success:function(data){
             if(data.error==400){//未登录
-                location.href =  lt.LOGIN + '?returnURL=' + encodeURIComponent(location.href);  
+                location.href =  lt.LOGIN + '?returnUrl=' + encodeURIComponent(location.href);  
             }else{
                 params.success&&params.success(data);
             }

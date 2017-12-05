@@ -19,6 +19,20 @@
         <div class="lt_content">
             <div class="mui-scroll-wrapper">
                 <div class="mui-scroll">
+                        <div class="mui-slider">
+                                <div class="mui-slider-group mui-slider-loop">
+                                  <!--支持循环，需要重复图片节点-->
+                                  <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="/mobile/images/detail.jpg"></a></div>
+                                  <div class="mui-slider-item"><a href="#"><img src="/mobile/images/product.jpg"></a></div>
+                                  <div class="mui-slider-item"><a href="#"><img src="/mobile/images/detail.jpg"></a></div>
+                                  <!--支持循环，需要重复图片节点-->
+                                  <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="/mobile/images/product.jpg"></a></div>
+                                </div>
+                                <div class="mui-slider-indicator">
+                                    <div class="mui-indicator mui-active"></div>
+                                    <div class="mui-indicator"></div>
+                                </div>
+                            </div>
                     <!-- TODO -->
                 </div>
             </div>
@@ -31,6 +45,7 @@
     </div>
 </div>
 <script type="text/template" id="productDetail">
+    
     <div class="mui-slider">
         <div class="mui-slider-group mui-slider-loop">
           <!--支持循环，需要重复图片节点-->
@@ -62,7 +77,7 @@
         <span class="jian">-</span><input readonly="" type="text" value="0" max="<%=data.num%>"><span class="jia">+</span>
         剩余：<%=data.num%> 件
     </div>
-<!-- 添加去购物车的弹出框 -->
+    
 </script>
 <script src="assets/mui/js/mui.min.js"></script>
 <script src="assets/zepto/zepto.min.js"></script>
